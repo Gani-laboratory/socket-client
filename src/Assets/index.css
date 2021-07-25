@@ -580,8 +580,8 @@ video {
 .h-9 {
 	height: 2.25rem;
 }
-.h-2 {
-	height: 0.5rem;
+.h-1 {
+	height: 0.25rem;
 }
 .w-full {
 	width: 100%;
@@ -606,6 +606,9 @@ video {
 }
 .gap-5 {
 	gap: 1.25rem;
+}
+.gap-1 {
+	gap: 0.25rem;
 }
 .rounded-md {
 	border-radius: 0.375rem;

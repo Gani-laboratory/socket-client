@@ -23,7 +23,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "watch:css": "postcss -w src/Assets/tailwind.css -o src/Assets/index.css"
+    "watch:css": "postcss src/Assets/tailwind.css -o src/Assets/index.css"
   },
   "eslintConfig": {
     "extends": [
