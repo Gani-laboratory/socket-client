@@ -5,8 +5,8 @@ import User3 from "../Assets/profile.jpg"
 export default function Chat() {
   return (
     <div className="flex gap-5 p-5 ml-16">
-      <div className="flex flex-col h-auto w-3/4 gap-2">
-        <div className="flex flex-col font-poppins bg-gray-900 rounded-md p-1 h-md overflow-auto">
+      <div className="flex flex-col w-3/4 gap-2">
+        <div className="flex flex-col font-poppins bg-gray-900 rounded-md p-1 overflow-auto" style={{ height: "43%" }}>
           <div className="flex flex-col justify-center items-center self-center my-2">
             <small className="text-gray-100 px-1">{new Date().toLocaleDateString("en", { month: "long", year: "numeric", day: "numeric" })}</small>
             <hr className="w-full" />

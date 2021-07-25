@@ -7,9 +7,6 @@ module.exports = {
       ubuntu: ["Ubuntu", "sans-serif"],
       poppins: ["Poppins", "sans-serif"],
     },
-    height: {
-      md: "43%",
-    },
   },
   variants: {
     extend: {},
