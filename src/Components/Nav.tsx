@@ -1,10 +1,11 @@
+import { useState } from "react"
 import { ReactComponent as Notif } from "../Assets/notification.svg"
 import { ReactComponent as Search } from "../Assets/search.svg"
 import profile from "../Assets/profile.jpg"
 
 export function TopBar() {
   return (
-    <div className="flex justify-between items-center p-5 font-ubuntu border-b">
+    <div className="flex justify-between items-center p-5 font-ubuntu border-b ml-16">
       <h3 className="text-lg">Personal chat</h3>
       <div className="flex items-center gap-5">
         <div className="flex items-center rounded-r">
@@ -19,9 +20,21 @@ export function TopBar() {
 }
 
 export function SideBar() {
+  const [open, setOpen] = useState(false)
+  const toggleClass = () => {
+    setOpen(!open)
+  }
+
   return (
-    <div className="flex flex-col">
-      <p>Sidebar component</p>
+    <div className="fixed h-screen p-4 border-r z-10 bg-white">
+      <div className="flex mt-1 flex-col justify-between w-9 h-9 cursor-pointer transition-all" onClick={toggleClass}>
+        <span className="block h-2 w-full bg-black rounded-full" />
+        <span className="block h-2 w-full bg-black rounded-full" />
+        <span className="block h-2 w-full bg-black rounded-full" />
+      </div>
+      <div className="flex items-center justify-center w-full h-full text-lg">
+        <p>L</p>
+      </div>
     </div>
   )
 }
