@@ -13,6 +13,7 @@ export function TopBar() {
           <Search className="cursor-pointer rounded-md rounded-l-none p-2 bg-gray-200" width={40} height={40} />
         </div>
         <Notif className="cursor-pointer" width={35} height={35} />
+        <small className="bg-red-600 text-white leading-none w-6 h-6 font-ubuntu text-xs text-center rounded-full p-1 relative right-9 bottom-2">11</small>
         <img className="rounded-full cursor-pointer" src={profile} alt="profile" width={45} height={45} />
       </div>
     </div>
