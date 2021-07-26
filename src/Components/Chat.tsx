@@ -4,9 +4,9 @@ import User3 from "../Assets/profile.jpg"
 
 export default function Chat() {
   return (
-    <div className="flex gap-5 p-5 ml-16">
-      <div className="flex flex-col w-3/4 gap-2">
-        <div className="flex flex-col font-poppins bg-gray-900 rounded-md p-1 overflow-auto" style={{ height: "43%" }}>
+    <div className="flex gap-5 p-5 ml-16 items-start">
+      <div className="flex flex-col w-3/4 gap-2 max-h-100">
+        <div className="flex flex-col font-poppins bg-gray-900 rounded-md p-1 overflow-auto">
           <div className="flex flex-col justify-center items-center self-center my-2">
             <small className="text-gray-100 px-1">{new Date().toLocaleDateString("en", { month: "long", year: "numeric", day: "numeric" })}</small>
             <hr className="w-full" />
@@ -60,10 +60,7 @@ export default function Chat() {
             <img className="rounded-full" src={User2} alt="Lawliet" width={35} height={35} />
           </div>
         </div>
-        <div>
-          <input className="w-full rounded-full border p-2" type="text" placeholder="Write a message..." />
-          <button></button>
-        </div>
+        <input className="w-full rounded-full border p-2" type="text" placeholder="Write a message..." />
       </div>
       <div className="flex flex-col gap-5 w-1/4 items-center">
         <h3>List Of Chats</h3>
