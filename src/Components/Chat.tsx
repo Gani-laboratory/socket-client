@@ -60,7 +60,7 @@ export default function Chat() {
             <img className="rounded-full" src={User2} alt="Lawliet" width={35} height={35} />
           </div>
         </div>
-        <input className="w-full rounded-full border p-2 focus:outline-none" type="text" placeholder="Write a message..." />
+        <input className="w-full rounded-full border p-2 px-4 focus:outline-none" type="text" placeholder="Write a message..." />
       </div>
       <div className="flex flex-col gap-5 w-1/4 items-center">
         <h3>List Of Chats</h3>
