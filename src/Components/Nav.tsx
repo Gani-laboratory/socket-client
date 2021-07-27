@@ -9,7 +9,7 @@ export function TopBar() {
       <h3 className="text-lg">Personal chat</h3>
       <div className="flex items-center gap-5">
         <div className="flex items-center rounded-r">
-          <input className="rounded-md rounded-r-none p-2 bg-gray-100" type="text" id="search" placeholder="Search" />
+          <input className="rounded-md rounded-r-none p-2 bg-gray-100 focus:outline-none" type="text" id="search" placeholder="Search" />
           <Search className="cursor-pointer rounded-md rounded-l-none p-2 bg-gray-200" width={40} height={40} />
         </div>
         <Notif className="cursor-pointer" width={35} height={35} />
