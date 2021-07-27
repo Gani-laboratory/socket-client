@@ -1,8 +1,14 @@
+import { useEffect } from "react"
+import io from "socket.io-client"
 import User1 from "../Assets/profile.jpg"
 import User2 from "../Assets/profile.jpg"
 import User3 from "../Assets/profile.jpg"
 
 export default function Chat() {
+  useEffect(() => {
+    const chatSocket = io("http://localhost:8080/chat")
+    chatSocket.on("hello", console.log)
+  }, [])
   return (
     <div className="flex gap-5 p-5 ml-16 items-start">
       <div className="flex flex-col w-3/4 gap-2 max-h-100">
