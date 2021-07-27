@@ -1,14 +1,23 @@
-import { useEffect } from "react"
+import { useState } from "react"
+import { KeyboardEventHandler } from "react"
 import io from "socket.io-client"
 import User1 from "../Assets/profile.jpg"
 import User2 from "../Assets/profile.jpg"
 import User3 from "../Assets/profile.jpg"
 
 export default function Chat() {
-  useEffect(() => {
-    const chatSocket = io("http://localhost:8080/chat")
-    chatSocket.on("hello", console.log)
-  }, [])
+  const [msg, setMsg] = useState<Record<string, string>[]>([])
+  const chatSocket = io("http://localhost:8080/chat")
+  chatSocket.on("receive", (args: Record<string, string>) => {
+    setMsg([...msg, args])
+  })
+  const sendMsg: KeyboardEventHandler<HTMLInputElement> = (ev) => {
+    if (ev.code === "Enter") {
+      chatSocket.emit("send", { content: ev.currentTarget.value, from: "myID" })
+      ev.currentTarget.value = ""
+    }
+  }
+
   return (
     <div className="flex gap-5 p-5 ml-16 items-start">
       <div className="flex flex-col w-3/4 gap-2 max-h-100">
@@ -66,7 +75,7 @@ export default function Chat() {
             <img className="rounded-full" src={User2} alt="Lawliet" width={35} height={35} />
           </div>
         </div>
-        <input className="w-full rounded-full border p-2 px-4 focus:outline-none" type="text" placeholder="Write a message..." />
+        <input className="w-full rounded-full border p-2 px-4 focus:outline-none" type="text" placeholder="Write a message..." onKeyUp={sendMsg} />
       </div>
       <div className="flex flex-col gap-5 w-1/4 items-center">
         <h3>List Of Chats</h3>
