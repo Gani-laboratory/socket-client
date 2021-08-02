@@ -7,7 +7,7 @@ module.exports = {
       ubuntu: ["Ubuntu", "sans-serif"],
       poppins: ["Poppins", "sans-serif"],
     },
-    maxHeight: {
+    minHeight: {
       100: "32.5rem",
     },
   },

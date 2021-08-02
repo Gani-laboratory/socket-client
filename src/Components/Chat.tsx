@@ -13,67 +13,26 @@ export default function Chat() {
   })
   const sendMsg: KeyboardEventHandler<HTMLInputElement> = (ev) => {
     if (ev.code === "Enter") {
-      chatSocket.emit("send", { content: ev.currentTarget.value, from: "myID" })
+      chatSocket.emit("send", { message: ev.currentTarget.value, from: "myID" })
       ev.currentTarget.value = ""
     }
   }
 
   return (
     <div className="flex gap-5 p-5 ml-16 items-start">
-      <div className="flex flex-col w-3/4 gap-2 max-h-100">
+      <div className="flex flex-col justify-between w-3/4 gap-2 min-h-100">
         <div className="flex flex-col font-poppins bg-gray-900 rounded-md p-1 overflow-auto">
           <div className="flex flex-col justify-center items-center self-center my-2">
             <small className="text-gray-100 px-1">{new Date().toLocaleDateString("en", { month: "long", year: "numeric", day: "numeric" })}</small>
             <hr className="w-full" />
           </div>
-          <div className="flex items-end self-end gap-2 mb-4 w-8/12">
-            <p className="bg-gray-100 border-2 p-1 rounded">
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vero possimus ad voluptates aut, veniam vitae, maiores perferendis, quae aperiam temporibus alias sed! Maiores, doloremque quo qui sed neque odio autem.
-            </p>
-            <img className="rounded-full" src={User2} alt="Yagami" width={35} height={35} />
-          </div>
-          <div className="flex flex-row-reverse self-start gap-3 items-end mb-4 w-8/12">
-            <p className="bg-gray-100 border-2 p-1 rounded">
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vero possimus ad voluptates aut, veniam vitae, maiores perferendis, quae aperiam temporibus alias sed! Maiores, doloremque quo qui sed neque odio autem.
-            </p>
-            <img className="rounded-full" src={User2} alt="Lawliet" width={35} height={35} />
-          </div>
-          <div className="flex items-end self-end gap-2 mb-4 w-8/12">
-            <p className="bg-gray-100 border-2 p-1 rounded">
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vero possimus ad voluptates aut, veniam vitae, maiores perferendis, quae aperiam temporibus alias sed! Maiores, doloremque quo qui sed neque odio autem.
-            </p>
-            <img className="rounded-full" src={User2} alt="Yagami" width={35} height={35} />
-          </div>
-          <div className="flex flex-row-reverse self-start gap-3 items-end mb-4 w-8/12">
-            <p className="bg-gray-100 border-2 p-1 rounded">
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vero possimus ad voluptates aut, veniam vitae, maiores perferendis, quae aperiam temporibus alias sed! Maiores, doloremque quo qui sed neque odio autem.
-            </p>
-            <img className="rounded-full" src={User2} alt="Lawliet" width={35} height={35} />
-          </div>
-          <div className="flex items-end self-end gap-2 mb-4 w-8/12">
-            <p className="bg-gray-100 border-2 p-1 rounded">
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vero possimus ad voluptates aut, veniam vitae, maiores perferendis, quae aperiam temporibus alias sed! Maiores, doloremque quo qui sed neque odio autem.
-            </p>
-            <img className="rounded-full" src={User2} alt="Yagami" width={35} height={35} />
-          </div>
-          <div className="flex flex-row-reverse self-start gap-3 items-end mb-4 w-8/12">
-            <p className="bg-gray-100 border-2 p-1 rounded">
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vero possimus ad voluptates aut, veniam vitae, maiores perferendis, quae aperiam temporibus alias sed! Maiores, doloremque quo qui sed neque odio autem.
-            </p>
-            <img className="rounded-full" src={User2} alt="Lawliet" width={35} height={35} />
-          </div>
-          <div className="flex items-end self-end gap-2 mb-4 w-8/12">
-            <p className="bg-gray-100 border-2 p-1 rounded">
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vero possimus ad voluptates aut, veniam vitae, maiores perferendis, quae aperiam temporibus alias sed! Maiores, doloremque quo qui sed neque odio autem.
-            </p>
-            <img className="rounded-full" src={User2} alt="Yagami" width={35} height={35} />
-          </div>
-          <div className="flex flex-row-reverse self-start gap-3 items-end mb-4 w-8/12">
-            <p className="bg-gray-100 border-2 p-1 rounded">
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vero possimus ad voluptates aut, veniam vitae, maiores perferendis, quae aperiam temporibus alias sed! Maiores, doloremque quo qui sed neque odio autem.
-            </p>
-            <img className="rounded-full" src={User2} alt="Lawliet" width={35} height={35} />
-          </div>
+          {msg.map((val) => (
+            // { self-start flex-row-reverse }
+            <div className="flex items-end self-end gap-3 mb-4 w-8/12 justify-end">
+              <p className="bg-gray-100 border-2 p-1 rounded">{val.message}</p>
+              <img className="rounded-full" src={User2} alt="Yagami" width={35} height={35} />
+            </div>
+          ))}
         </div>
         <input className="w-full rounded-full border p-2 px-4 focus:outline-none" type="text" placeholder="Write a message..." onKeyUp={sendMsg} />
       </div>
