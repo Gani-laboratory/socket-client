@@ -7,13 +7,15 @@ import Auth from "../Components/Auth"
 export default function Routes() {
   return (
     <Router>
-      <SideBar />
-      <TopBar />
       <Switch>
         <Route exact path="/">
+          <SideBar />
+          <TopBar />
           <Home />
         </Route>
         <Route exact path="/chat">
+          <SideBar />
+          <TopBar />
           <Chat />
         </Route>
         <Route exact path="/auth">
