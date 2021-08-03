@@ -1,19 +1,11 @@
-import { useState } from "react"
 import { KeyboardEventHandler } from "react"
-import io from "socket.io-client"
 import User1 from "../Assets/profile.jpg"
 import User2 from "../Assets/profile.jpg"
 import User3 from "../Assets/profile.jpg"
 
 export default function Chat() {
-  const [msg, setMsg] = useState<Record<string, string>[]>([])
-  const chatSocket = io("http://localhost:8080/chat")
-  chatSocket.on("receive", (args: Record<string, string>) => {
-    setMsg([...msg, args])
-  })
   const sendMsg: KeyboardEventHandler<HTMLInputElement> = (ev) => {
     if (ev.code === "Enter") {
-      chatSocket.emit("send", { message: ev.currentTarget.value, from: "myID" })
       ev.currentTarget.value = ""
     }
   }
@@ -26,13 +18,15 @@ export default function Chat() {
             <small className="text-gray-100 px-1">{new Date().toLocaleDateString("en", { month: "long", year: "numeric", day: "numeric" })}</small>
             <hr className="w-full" />
           </div>
-          {msg.map((val) => (
-            // { self-start flex-row-reverse }
-            <div className="flex items-end self-end gap-3 mb-4 w-8/12 justify-end">
-              <p className="bg-gray-100 border-2 p-1 rounded">{val.message}</p>
-              <img className="rounded-full" src={User2} alt="Yagami" width={35} height={35} />
-            </div>
-          ))}
+          {/* {msg.map((val) => ( */}
+          {/* class for partner -> { self-start flex-row-reverse } */}
+          <div className="flex items-end self-end gap-3 mb-4 w-8/12 justify-end">
+            <p className="bg-gray-100 border-2 p-1 rounded">
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quasi atque dolorem libero reprehenderit, incidunt sequi eum quam amet aliquam debitis! Ducimus itaque deserunt quis ab omnis vel dolor soluta minus.
+            </p>
+            <img className="rounded-full" src={User2} alt="Yagami" width={35} height={35} />
+          </div>
+          {/* ))} */}
         </div>
         <input className="w-full rounded-full border p-2 px-4 focus:outline-none" type="text" placeholder="Write a message..." onKeyUp={sendMsg} />
       </div>
