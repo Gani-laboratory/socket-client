@@ -6,10 +6,10 @@ const socketContext = createContext({})
 
 export default function SocketProvider({ children }: { children: React.ReactNode }) {
   const [socket, setSocket] = useState<Socket<DefaultEventsMap, DefaultEventsMap>>()
-  useEffect(() => {
-    const newSocket = io("http://localhost:8080/chat")
-    setSocket(newSocket)
-  }, [])
+  // useEffect(() => {
+  //   const newSocket = io("http://localhost:8080/chat")
+  //   setSocket(newSocket)
+  // }, [])
 
   return <socketContext.Provider value={socket as Socket}>{children}</socketContext.Provider>
 }
