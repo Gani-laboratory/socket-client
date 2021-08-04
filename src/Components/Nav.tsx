@@ -27,8 +27,8 @@ export function SideBar() {
   }
 
   return (
-    <div className={`fixed h-screen ${open ? "w-60" : "w-auto"} p-4 border-r z-10 bg-white font-ubuntu`}>
-      <div className="flex flex-col justify-center gap-1 mt-1 w-9 h-9 cursor-pointer transition-all" onClick={toggleClass}>
+    <div className={`fixed h-screen transition-all delay-100 ${open ? "w-60" : "w-auto"} p-4 border-r z-10 bg-white font-ubuntu`}>
+      <div className="flex flex-col justify-center gap-1 mt-1 w-9 h-9 cursor-pointer" onClick={toggleClass}>
         <span className="block h-1 w-full bg-black rounded-full" />
         <span className="block h-1 w-full bg-black rounded-full" />
         <span className="block h-1 w-full bg-black rounded-full" />
