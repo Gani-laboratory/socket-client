@@ -27,14 +27,17 @@ export function SideBar() {
   }
 
   return (
-    <div className="fixed h-screen p-4 border-r z-10 bg-white">
+    <div className={`fixed h-screen ${open ? "w-60" : "w-auto"} p-4 border-r z-10 bg-white font-ubuntu`}>
       <div className="flex flex-col justify-center gap-1 mt-1 w-9 h-9 cursor-pointer transition-all" onClick={toggleClass}>
         <span className="block h-1 w-full bg-black rounded-full" />
         <span className="block h-1 w-full bg-black rounded-full" />
         <span className="block h-1 w-full bg-black rounded-full" />
       </div>
-      <div className="flex items-center justify-center w-full h-full text-lg">
-        <p>L</p>
+      <div className="flex flex-col gap-5 items-center justify-center w-full h-full text-lg">
+        <div className={`${open ? "flex items-center gap-2 bg-indigo-500 p-1 rounded-md" : ""} text-white cursor-pointer`}>
+          <i className="far fa-home p-2 border-2 bg-indigo-600 rounded-md"></i>
+          {open && <p>Homepage</p>}
+        </div>
       </div>
     </div>
   )

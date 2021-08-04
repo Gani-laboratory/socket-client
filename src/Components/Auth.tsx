@@ -22,7 +22,7 @@ export default function Auth({ onSetUser }: { onSetUser: any }) {
             <input className="rounded-r border border-l-none bg-gray-100 focus:outline-none p-1 px-3 lg:w-full w-1/2" type="text" name="username" placeholder="Username" onChange={(e) => setUsername(e.target.value)} />
           </div>
           <div className="flex">
-            <i className="far fa-fingerprint rounded-l border bg-gray-100 p-2"></i>
+            <i className="far fa-key rounded-l border bg-gray-100 p-2"></i>
             <input className="rounded-r border border-l-none bg-gray-100 focus:outline-none p-1 px-3 lg:w-full w-1/2" type="password" name="username" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
           </div>
         </div>

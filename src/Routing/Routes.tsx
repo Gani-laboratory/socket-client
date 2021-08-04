@@ -6,15 +6,13 @@ import { TopBar, SideBar } from "../Components/Nav"
 export default function Routes() {
   return (
     <Router>
+      <SideBar />
+      <TopBar />
       <Switch>
         <Route exact path="/">
-          <SideBar />
-          <TopBar />
           <Home />
         </Route>
         <Route exact path="/chat">
-          <SideBar />
-          <TopBar />
           <Chat />
         </Route>
       </Switch>
