@@ -7,9 +7,12 @@ export function useChat() {
   return useContext<Chat>(chatContext)
 }
 
+let l = 1
+
 export default function ChatProvider({ children }: { children: ReactNode }) {
   const [chats, setChats] = useLocalStorage("chats", [])
   const updateChats = ({ message, from }: any) => {
+    console.log(l++)
     return setChats((prevChat: []) => [...prevChat, { message, from }])
   }
 
