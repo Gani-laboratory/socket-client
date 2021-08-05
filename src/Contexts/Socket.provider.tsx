@@ -9,11 +9,7 @@ export default function SocketProvider({ children }: { children: React.ReactNode
   useEffect(() => {
     const newSocket = io("http://localhost:8080/chat")
     setSocket(newSocket)
-
-    return () => newSocket.close()
   }, [])
-
-  console.log(`get undefined after hit /chat ? -> ${socket}`)
 
   return <socketContext.Provider value={socket as Socket}>{children}</socketContext.Provider>
 }

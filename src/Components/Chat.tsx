@@ -33,9 +33,11 @@ export default function Chat() {
     setIsOpen(false)
   }
 
-  socket.on("receive", (args) => {
-    updateChats({ message: args.message, from: args.from })
-  })
+  if (socket) {
+    socket.on("receive", (args) => {
+      updateChats({ message: args.message, from: args.from })
+    })
+  }
 
   return (
     <>
