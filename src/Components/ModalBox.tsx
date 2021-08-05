@@ -1,7 +1,7 @@
 import { Dialog, Transition } from "@headlessui/react"
 import { Fragment } from "react"
 
-export default function ModalBox({ isOpen, setIsOpen, handleData, setId }: Record<string, any>) {
+export default function ModalBox({ isOpen, setIsOpen, handleContact, setId }: Record<string, any>) {
   return (
     <Transition appear show={isOpen} as={Fragment}>
       <Dialog as="div" className="fixed inset-0 z-10 overflow-y-auto font-ubuntu" onClose={() => setIsOpen(false)}>
@@ -29,7 +29,7 @@ export default function ModalBox({ isOpen, setIsOpen, handleData, setId }: Recor
               <div className="mt-4 flex justify-between">
                 <button
                   className="inline-flex justify-center px-4 py-2 text-sm font-medium text-blue-900 bg-blue-100 border border-transparent rounded-md hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
-                  onClick={handleData}
+                  onClick={handleContact}
                 >
                   Add
                 </button>

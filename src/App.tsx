@@ -1,4 +1,5 @@
 import Auth from "./Components/Auth"
+import ChatProvider from "./Contexts/Chat.provider"
 import ContactProvider from "./Contexts/Contact.provider"
 import SocketProvider from "./Contexts/Socket.provider"
 import useLocalStorage from "./hooks/LocalStorage"
@@ -9,7 +10,9 @@ function App() {
   const userPages = (
     <SocketProvider>
       <ContactProvider>
-        <Routes />
+        <ChatProvider>
+          <Routes />
+        </ChatProvider>
       </ContactProvider>
     </SocketProvider>
   )

@@ -1,13 +1,13 @@
-import { createContext, useContext } from "react"
+import { createContext, ReactNode, useContext } from "react"
 import useLocalStorage from "../hooks/LocalStorage"
 
-const contactContext = createContext({ contact: [{ id: "", username: "" }], createContact: ({ id, username }: { id: string; username: string }) => ({ id: "", username: "" }) })
+const contactContext = createContext({ contact: [{ id: "", username: "" }], createContact: ({ id, username }: { id: string; username: string }) => {} })
 
 export function useContact() {
   return useContext<Contact>(contactContext)
 }
 
-export default function ContactProvider({ children }: { children: React.ReactNode }) {
+export default function ContactProvider({ children }: { children: ReactNode }) {
   const [contact, setContact] = useLocalStorage("contacts", [])
   const createContact = ({ id, username }: { id: string; username: string }) => {
     return setContact((prevContact: any) => {
