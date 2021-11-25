@@ -62,12 +62,12 @@ export default function Chat() {
           <input className="w-full rounded-full border-2 p-2 px-4 focus:outline-none" type="text" placeholder="Write a message..." onKeyUp={handleMsg} />
         </div>
         <div className="flex flex-col justify-between w-1/4 font-ubuntu bg-indigo-200 rounded-md h-100">
-          <div className="overflow-auto">
-            <div className="flex w-full justify-between text-white bg-indigo-600 text-center cursor-pointer rounded-t-md">
+          <div>
+            <div className="flex justify-between w-full text-white bg-indigo-600 text-center cursor-pointer rounded-t-md">
               <h3 className="p-5 w-full border-r">Chats</h3>
               <h3 className="p-5 w-full border-l">Groups</h3>
             </div>
-            <div className="flex flex-col gap-3 md:p-5 p-1 text-white">
+            <div className="flex flex-col gap-3 md:p-5 p-1 text-white overflow-auto max-h-97">
               {contact.length ? (
                 contact.map((val) => (
                   <div className="flex gap-2 items-center bg-indigo-600 rounded-md hover:bg-indigo-700 cursor-pointer" key={val.id}>
