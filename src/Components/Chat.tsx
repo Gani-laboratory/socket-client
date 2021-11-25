@@ -17,8 +17,9 @@ export default function Chat() {
   const socket = useSocket()
 
   const handleMsg: KeyboardEventHandler<HTMLInputElement> = (ev) => {
-    if (ev.code === "Enter") {
-      const message = ev.currentTarget.value
+    let text = ev.currentTarget.value
+    if (ev.code === "Enter" && text) {
+      const message = text
       const from = user.id
       socket.emit("send", { message, from })
       updateChats({ message, from })
