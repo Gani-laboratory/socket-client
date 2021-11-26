@@ -10,6 +10,9 @@ module.exports = {
       spacing: {
         100: "32rem",
       },
+      maxHeight: {
+        97: "25rem",
+      }
     },
   },
   variants: {

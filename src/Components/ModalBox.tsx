@@ -1,7 +1,7 @@
 import { Dialog, Transition } from "@headlessui/react"
 import { Fragment } from "react"
 
-export default function ModalBox({ isOpen, setIsOpen, handleContact, setId }: Record<string, any>) {
+export default function ModalBox({ isOpen, setIsOpen, handleContact, setId, setName }: Record<string, any>) {
   return (
     <Transition appear show={isOpen} as={Fragment}>
       <Dialog as="div" className="fixed inset-0 z-10 overflow-y-auto font-ubuntu" onClose={() => setIsOpen(false)}>
@@ -19,10 +19,14 @@ export default function ModalBox({ isOpen, setIsOpen, handleContact, setId }: Re
               <Dialog.Title as="h3" className="text-lg font-medium leading-6 text-gray-900">
                 New Contact
               </Dialog.Title>
-              <div className="mt-2 flex flex-col">
+              <div className="mt-2 flex flex-col gap-2">
+                <div>
+                  <i className="far fa-user-tag rounded-l-full border bg-gray-100 p-2"></i>
+                  <input className="focus:outline-none p-1 px-2 border rounded-r-full" type="text" name="name" onChange={(ev) => setName(ev.currentTarget.value)} placeholder="Enter your Name" required />
+                </div>
                 <div>
                   <i className="far fa-fingerprint rounded-l-full border bg-gray-100 p-2"></i>
-                  <input className="focus:outline-none p-1 px-2 border rounded-r-full" type="text" name="id" onChange={(ev) => setId(ev.currentTarget.value)} placeholder="Enter the ID" required />
+                  <input className="focus:outline-none p-1 px-2 border rounded-r-full" type="text" name="id" onChange={(ev) => setId(ev.currentTarget.value)} placeholder="Enter your ID" required />
                 </div>
               </div>
 

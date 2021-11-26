@@ -12,12 +12,14 @@ export default function Chat() {
   const [user] = useLocalStorage("user")
   const [isOpen, setIsOpen] = useState(false)
   const [id, setId] = useState("")
+  const [name, setName] = useState("")
 
   const socket = useSocket()
 
   const handleMsg: KeyboardEventHandler<HTMLInputElement> = (ev) => {
-    if (ev.code === "Enter") {
-      const message = ev.currentTarget.value
+    let text = ev.currentTarget.value
+    if (ev.code === "Enter" && text) {
+      const message = text
       const from = user.id
       socket.emit("send", { message, from })
       updateChats({ message, from })
@@ -28,29 +30,29 @@ export default function Chat() {
   const handleContact: MouseEventHandler<HTMLButtonElement> = (ev) => {
     if (id) {
       ev.preventDefault()
-      createContact({ id, username: "contact name" })
+      createContact({ id, username: name })
     }
     setIsOpen(false)
   }
 
-  if (socket) {
-    socket.on("receive", (args) => {
-      updateChats({ message: args.message, from: args.from })
-    })
-  }
+  // if (socket) {
+  //   socket.on("receive", (args) => {
+  //     updateChats({ message: args.message, from: args.from })
+  //   })
+  // }
 
   return (
     <>
-      <ModalBox isOpen={isOpen} setIsOpen={setIsOpen} handleContact={handleContact} setId={setId} />
-      <div className="flex gap-5 p-5 ml-16 items-start">
-        <div className="flex flex-col justify-between w-3/4 gap-2 h-100">
+      <ModalBox isOpen={isOpen} setIsOpen={setIsOpen} handleContact={handleContact} setId={setId} setName={setName} />
+      <div className={`flex p-5 ml-16 ${contact.length ? 'gap-5' : 'justify-center'}`}>
+        <div className={`flex flex-col justify-between w-3/4 gap-2 h-100 ${contact.length ? '' : 'hidden'}`}>
           <div className="flex flex-col font-poppins bg-gray-900 h-full rounded-md p-1 overflow-auto">
             <div className="flex flex-col justify-center items-center self-center my-2">
               <small className="text-gray-100 px-1">{new Date().toLocaleDateString("en", { month: "long", year: "numeric", day: "numeric" })}</small>
               <hr className="w-full" />
             </div>
             {/* class for partner -> { self-start flex-row-reverse } */}
-            {chats.length &&
+            {!!chats.length &&
               chats.map((chat, i) => (
                 <div key={i} className={`flex items-end ${chat.from === user.id ? "self-end" : "self-start flex-row-reverse"} gap-3 mb-4 w-8/12 justify-end`}>
                   <p className="bg-gray-100 border-2 p-1 rounded">{chat.message}</p>
@@ -60,13 +62,13 @@ export default function Chat() {
           </div>
           <input className="w-full rounded-full border-2 p-2 px-4 focus:outline-none" type="text" placeholder="Write a message..." onKeyUp={handleMsg} />
         </div>
-        <div className="flex flex-col justify-between w-1/4 font-ubuntu bg-indigo-200 rounded-md h-100">
+        <div className={`${contact.length ? 'w-1/4' : 'w-3/5'} flex flex-col justify-between font-ubuntu bg-indigo-200 rounded-md h-100`}>
           <div>
             <div className="flex justify-between w-full text-white bg-indigo-600 text-center cursor-pointer rounded-t-md">
               <h3 className="p-5 w-full border-r">Chats</h3>
               <h3 className="p-5 w-full border-l">Groups</h3>
             </div>
-            <div className="flex flex-col gap-3 overflow-auto md:p-5 p-1 text-white">
+            <div className="flex flex-col gap-3 md:p-5 p-1 text-white overflow-auto max-h-97">
               {contact.length ? (
                 contact.map((val) => (
                   <div className="flex gap-2 items-center bg-indigo-600 rounded-md hover:bg-indigo-700 cursor-pointer" key={val.id}>
