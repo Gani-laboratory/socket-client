@@ -1,9 +1,9 @@
-import Auth from "./Components/Auth"
-import ChatProvider from "./Contexts/Chat.provider"
-import ContactProvider from "./Contexts/Contact.provider"
-import SocketProvider from "./Contexts/Socket.provider"
-import useLocalStorage from "./hooks/LocalStorage"
-import Routes from "./Routing/Routes"
+import Auth from "./Auth"
+import ChatProvider from "../Contexts/Chat.provider"
+import ContactProvider from "../Contexts/Contact.provider"
+import SocketProvider from "../Contexts/Socket.provider"
+import useLocalStorage from "../Hooks/LocalStorage"
+import Routes from "../Routing/Routes"
 
 function App() {
   const [user, setUser] = useLocalStorage("user")

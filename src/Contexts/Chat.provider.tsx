@@ -1,5 +1,5 @@
 import { createContext, ReactNode, useContext } from "react"
-import useLocalStorage from "../hooks/LocalStorage"
+import useLocalStorage from "../Hooks/LocalStorage"
 
 const chatContext = createContext({ chats: [{ message: "", from: "" }], updateChats: ({ message, from }: any) => {} })
 

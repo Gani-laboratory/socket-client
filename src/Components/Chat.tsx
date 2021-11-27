@@ -3,7 +3,7 @@ import User from "../Assets/profile.jpg"
 import { useChat } from "../Contexts/Chat.provider"
 import { useContact } from "../Contexts/Contact.provider"
 import { useSocket } from "../Contexts/Socket.provider"
-import useLocalStorage from "../hooks/LocalStorage"
+import useLocalStorage from "../Hooks/LocalStorage"
 import ModalBox from "./ModalBox"
 
 export default function Chat() {

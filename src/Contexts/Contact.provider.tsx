@@ -1,5 +1,5 @@
 import { createContext, ReactNode, useContext } from "react"
-import useLocalStorage from "../hooks/LocalStorage"
+import useLocalStorage from "../Hooks/LocalStorage"
 
 const contactContext = createContext({ contact: [{ id: "", username: "" }], createContact: ({ id, username }: { id: string; username: string }) => {} })
 
