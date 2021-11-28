@@ -6,11 +6,11 @@ import useLocalStorage from "../Hooks/LocalStorage"
 import Routes from "../Routing/Routes"
 
 function App() {
-  const [user, setUser] = useLocalStorage("user")
+  const [user, setUser] = useLocalStorage<string>("user")
   const userPages = (
-    <SocketProvider>
+    <SocketProvider user={JSON.parse(user)}>
       <ContactProvider>
-        <ChatProvider>
+        <ChatProvider user={JSON.parse(user)}>
           <Routes />
         </ChatProvider>
       </ContactProvider>
@@ -21,3 +21,9 @@ function App() {
 }
 
 export default App
+
+export interface user {
+  id: string,
+  username: string,
+  password: string
+}
