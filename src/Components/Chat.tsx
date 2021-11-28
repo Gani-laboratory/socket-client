@@ -2,27 +2,23 @@ import { KeyboardEventHandler, MouseEventHandler, useState } from "react"
 import User from "../Assets/profile.jpg"
 import { useChat } from "../Contexts/Chat.provider"
 import { useContact } from "../Contexts/Contact.provider"
-import { useSocket } from "../Contexts/Socket.provider"
 import useLocalStorage from "../hooks/LocalStorage"
 import ModalBox from "./ModalBox"
 
 export default function Chat() {
   const { contact, createContact } = useContact()
-  const { chats, updateChats } = useChat()
+  const { chats, sendMsg } = useChat()
   const [user] = useLocalStorage("user")
   const [isOpen, setIsOpen] = useState(false)
   const [id, setId] = useState("")
   const [name, setName] = useState("")
-
-  const socket = useSocket()
 
   const handleMsg: KeyboardEventHandler<HTMLInputElement> = (ev) => {
     let text = ev.currentTarget.value
     if (ev.code === "Enter" && text) {
       const message = text
       const from = user.id
-      socket.emit("send", { message, from })
-      updateChats({ message, from })
+      sendMsg({ message, from })
       ev.currentTarget.value = ""
     }
   }
@@ -44,8 +40,8 @@ export default function Chat() {
   return (
     <>
       <ModalBox isOpen={isOpen} setIsOpen={setIsOpen} handleContact={handleContact} setId={setId} setName={setName} />
-      <div className={`flex p-5 ml-16 ${contact.length ? 'gap-5' : 'justify-center'}`}>
-        <div className={`flex flex-col justify-between w-3/4 gap-2 h-100 ${contact.length ? '' : 'hidden'}`}>
+      <div className={`flex p-5 ml-16 ${contact.length ? "gap-5" : "justify-center"}`}>
+        <div className={`flex flex-col justify-between w-3/4 gap-2 h-100 ${contact.length ? "" : "hidden"}`}>
           <div className="flex flex-col font-poppins bg-gray-900 h-full rounded-md p-1 overflow-auto">
             <div className="flex flex-col justify-center items-center self-center my-2">
               <small className="text-gray-100 px-1">{new Date().toLocaleDateString("en", { month: "long", year: "numeric", day: "numeric" })}</small>
@@ -62,7 +58,7 @@ export default function Chat() {
           </div>
           <input className="w-full rounded-full border-2 p-2 px-4 focus:outline-none" type="text" placeholder="Write a message..." onKeyUp={handleMsg} />
         </div>
-        <div className={`${contact.length ? 'w-1/4' : 'w-3/5'} flex flex-col justify-between font-ubuntu bg-indigo-200 rounded-md h-100`}>
+        <div className={`${contact.length ? "w-1/4" : "w-3/5"} flex flex-col justify-between font-ubuntu bg-indigo-200 rounded-md h-100`}>
           <div>
             <div className="flex justify-between w-full text-white bg-indigo-600 text-center cursor-pointer rounded-t-md">
               <h3 className="p-5 w-full border-r">Chats</h3>

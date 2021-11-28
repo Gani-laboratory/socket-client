@@ -22,11 +22,11 @@ export default function ModalBox({ isOpen, setIsOpen, handleContact, setId, setN
               <div className="mt-2 flex flex-col gap-2">
                 <div>
                   <i className="far fa-user-tag rounded-l-full border bg-gray-100 p-2"></i>
-                  <input className="focus:outline-none p-1 px-2 border rounded-r-full" type="text" name="name" onChange={(ev) => setName(ev.currentTarget.value)} placeholder="Enter your Name" required />
+                  <input className="focus:outline-none p-1 px-2 border rounded-r-full" type="text" name="name" onChange={(ev) => setName(ev.currentTarget.value)} placeholder="Enter Username" required />
                 </div>
                 <div>
                   <i className="far fa-fingerprint rounded-l-full border bg-gray-100 p-2"></i>
-                  <input className="focus:outline-none p-1 px-2 border rounded-r-full" type="text" name="id" onChange={(ev) => setId(ev.currentTarget.value)} placeholder="Enter your ID" required />
+                  <input className="focus:outline-none p-1 px-2 border rounded-r-full" type="text" name="id" onChange={(ev) => setId(ev.currentTarget.value)} placeholder="Enter ID" required />
                 </div>
               </div>
 
