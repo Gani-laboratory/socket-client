@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react"
 
-export default function useLocalStorage(key: string, initialVal?: (string | any[]) | (() => string | any[])) {
+export default function useLocalStorage<T>(key: string, initialVal?: (string | any[]) | (() => string | any[])) {
   const prefixedKey = `shinigami-${key}`
-  const [value, setValue] = useState(() => {
+  const [value, setValue] = useState<T | any>(() => {
     const jsonVal = localStorage.getItem(prefixedKey)
     try {
       if (jsonVal) return JSON.parse(jsonVal)
