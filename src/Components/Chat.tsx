@@ -40,23 +40,13 @@ export default function Chat() {
   return (
     <>
       <ModalBox isOpen={isOpen} setIsOpen={setIsOpen} handleContact={handleContact} setId={setId} setName={setName} />
-      <div className={`flex p-5 ml-16 ${contacts.length && chats.length ? "gap-5" : "justify-center"}`}>
-        <div className={`flex flex-col justify-between w-3/4 gap-2 h-100 ${contacts.length && chats.length ? "" : "hidden"}`}>
+      <div className={`flex p-5 ml-16 ${(contacts.length && chats.length) | chats.length ? "gap-5" : "justify-center"}`}>
+        <div className={`flex flex-col justify-between w-3/4 gap-2 h-100 ${(contacts.length && chats.length) | chats.length ? "" : "hidden"}`}>
           <div className="flex flex-col font-poppins bg-gray-900 h-full rounded-md p-1 overflow-auto">
             <div className="flex flex-col justify-center items-center self-center my-2">
               <small className="text-gray-100 px-1">{new Date().toLocaleDateString("en", { month: "long", year: "numeric", day: "numeric" })}</small>
               <hr className="w-full" />
             </div>
-            {/* class for partner -> { self-start flex-row-reverse } */}
-            {/* {!!chats.length &&
-              (chats as chats).map((chat, i) => {
-                const lastMessage = selectedConversation.messages.length - 1 === i
-                return (<div ref={lastMessage ? setRef : null} key={i} className={`flex items-end ${selectedConversation.messages.fromMe ? "self-end" : "self-start flex-row-reverse"} gap-3 mb-4 w-8/12 justify-end`}>
-                  <p className="bg-gray-100 border-2 p-1 rounded">{chat.messages}</p>
-                  <img className="rounded-full" src={User} alt="Yagami" width={35} height={35} />
-                </div>)
-              })
-            } */}
             {selectedConversation &&
               selectedConversation.messages.map((message: any, index: any) => {
                 const lastMessage = selectedConversation.messages.length - 1 === index
@@ -70,7 +60,7 @@ export default function Chat() {
           </div>
           <input className="w-full rounded-full border-2 p-2 px-4 focus:outline-none" type="text" placeholder="Write a message..." onKeyUp={handleMsg} />
         </div>
-        <div className={`${contacts.length && chats.length ? "w-1/4" : "w-3/5"} flex flex-col justify-between font-ubuntu bg-indigo-200 rounded-md h-100`}>
+        <div className={`${(contacts.length && chats.length) | chats.length ? "w-1/4" : "w-3/5"} flex flex-col justify-between font-ubuntu bg-indigo-200 rounded-md h-100`}>
           <div>
             <div className="flex justify-between w-full text-white bg-indigo-600 text-center cursor-pointer rounded-t-md">
               <h3 className="p-5 w-full border-r">Chats</h3>
@@ -79,13 +69,7 @@ export default function Chat() {
             <div className="flex flex-col gap-3 md:p-5 p-1 text-white overflow-auto max-h-97">
               {contacts.length ? (
                 contacts.map((val, i) => (
-                  <div
-                    className={`flex gap-2 items-center bg-indigo-600 rounded-md hover:bg-indigo-700 cursor-pointer`}
-                    key={val.id}
-                    // onClick={() => (chats.length ? (selectedConversation ? true : createConversation([contacts[i].id])) : createConversation([val.id])) && selectConversationIndex(i)}
-                    onClick={() => selectConversationIndex(i)}
-                  >
-                    {/* createConversation([id]) && selectConversationIndex(i) */}
+                  <div className={`flex gap-2 items-center bg-indigo-600 rounded-md hover:bg-indigo-700 cursor-pointer`} key={val.id} onClick={() => selectConversationIndex(i)}>
                     <img className="rounded-l-md" src={User} alt={val.username} width={60} height={60} />
                     <h4>{val.username}</h4>
                   </div>

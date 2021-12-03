@@ -13,7 +13,7 @@ export function useChat() {
 export default function ChatProvider({ user, children }: { user: user; children: ReactNode }) {
   const [chats, setChats] = useLocalStorage<chats>("chats", [])
   const [selectedConversationIndex, setSelectedConversationIndex] = useState(0)
-  const { contacts } = useContact()
+  const { contacts, createContact } = useContact()
   const socket = useSocket()
 
   function createConversation(recipients: string[]) {
@@ -23,7 +23,7 @@ export default function ChatProvider({ user, children }: { user: user; children:
   }
 
   const addMsgToConversation = useCallback(
-    ({ recipients, text, sender }) => {
+    ({ recipients, text, sender, username }) => {
       setChats((prevChats: chats) => {
         let madeChange = false
         const newMessage = { sender, text }
@@ -41,11 +41,13 @@ export default function ChatProvider({ user, children }: { user: user; children:
         if (madeChange) {
           return newConversations
         } else {
+          createContact({ id: sender, username })
           return [...prevChats, { recipients, messages: [newMessage] }]
         }
       })
     },
-    [setChats]
+    // [setChats]
+    [createContact, setChats]
   )
 
   useEffect(() => {
@@ -57,9 +59,9 @@ export default function ChatProvider({ user, children }: { user: user; children:
   }, [socket, addMsgToConversation])
 
   function sendMessage(recipients: string[], text: string) {
-    socket.emit("send", { recipients, text })
+    socket.emit("send", { recipients, text, username: user.username })
 
-    addMsgToConversation({ recipients, text, sender: user.id })
+    addMsgToConversation({ recipients, text, sender: user.id, username: user.username })
   }
 
   const formattedChat = (chats as chats).map((chat, index) => {
