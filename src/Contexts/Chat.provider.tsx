@@ -46,8 +46,8 @@ export default function ChatProvider({ user, children }: { user: user; children:
         }
       })
     },
-    // [setChats]
-    [createContact, setChats]
+    [setChats]
+    // [createContact, setChats]
   )
 
   useEffect(() => {
